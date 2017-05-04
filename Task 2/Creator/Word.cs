@@ -25,12 +25,11 @@ namespace Task_2.Classes
             }
             else return false;
         }
-
         public int GetWordLength(ISentenceItem element)
         {
             return element.Value.Length;
         }
-
+       
         public void ReplaceValue(int wordLenght, ISentenceItem element, string newValue)
         {
             if (element.SentenceItemType == SentenceItemType.Word && GetWordLength(element) == wordLenght)
@@ -39,10 +38,10 @@ namespace Task_2.Classes
             }
         }
     }
-    
-   
 
-   
+
+
+
 
 }
 

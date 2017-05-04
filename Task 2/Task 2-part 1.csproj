@@ -43,21 +43,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\InterrogativeSentence.cs" />
+    <Compile Include="Classes\Opener and Reader\IReader.cs" />
+    <Compile Include="Classes\Opener and Reader\Reader.cs" />
     <Compile Include="Classes\Punctuation.cs" />
-    <Compile Include="Classes\Sentence.cs" />
+    <Compile Include="Creator\Sentence.cs" />
     <Compile Include="Classes\SentenceItem.cs" />
-    <Compile Include="Classes\Text.cs" />
-    <Compile Include="Classes\Word.cs" />
+    <Compile Include="Creator\Text.cs" />
+    <Compile Include="Creator\Word.cs" />
     <Compile Include="Enums\SentenceItemType.cs" />
     <Compile Include="Interfaces\IInterrogativeSentence.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
     <Compile Include="Interfaces\ISentenceItem.cs" />
     <Compile Include="Interfaces\IWord.cs" />
+    <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

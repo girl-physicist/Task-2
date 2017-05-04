@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_2.Classes
+namespace Task_2.Classes.Opener_and_Reader
 {
-    class Text
+   public interface IReader
     {
-
-
-        
+        List<string> Read();
     }
 }

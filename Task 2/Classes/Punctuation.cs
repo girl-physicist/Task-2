@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Task_2.Classes
 {
-    class Punctuation:Symbol
+   public class Punctuation
     {
         private char[] marks = new char[] { '.', ',', '!', '?','(',')','-','[',']','/',';',':','"' };
-        
+       
 
 
 
