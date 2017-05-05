@@ -50,6 +50,7 @@
     <Compile Include="Classes\SentenceItem.cs" />
     <Compile Include="Creator\Text.cs" />
     <Compile Include="Creator\Word.cs" />
+    <Compile Include="Dictionary\Dictionary.cs" />
     <Compile Include="Enums\SentenceItemType.cs" />
     <Compile Include="Interfaces\IInterrogativeSentence.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
@@ -63,6 +64,8 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="TextFile1.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

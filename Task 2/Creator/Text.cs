@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task_2.Enums;
 using Task_2.Interfaces;
 
 namespace Task_2.Classes
@@ -18,7 +19,7 @@ namespace Task_2.Classes
             _sentences = new List<ISentence>();
             _punctuationMark = new InterrogativeSentence();
         }
-        //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
+
         public void AddSentence(ISentence sentence)
         {
             _sentences.Add(sentence);
@@ -29,7 +30,6 @@ namespace Task_2.Classes
         }
         public IEnumerable<ISentence> SortSentences()
         {
-            // реализовать различные варианты сортировки
             return _sentences.OrderBy(x => x.GetWordsCount());
         }
         //"Text.ToString()" скрывает наследуемый член "object.ToString()". Чтобы текущий член переопределял эту реализацию, исп.  override
@@ -38,7 +38,7 @@ namespace Task_2.Classes
             // сепаратор Environment.NewLine равносилен  "\r\n" 
             return string.Join(Environment.NewLine, _sentences);
         }
-
+        //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
         public List<ISentence> GetQuestionSentences()
         {
             List<ISentence> questionSentences = new List<ISentence>();
@@ -81,8 +81,8 @@ namespace Task_2.Classes
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)
                 {
                     var currentElement = currentSentence.GetElementByIndex(i);
-                    if (currentElement.SentenceElementType == SentenceElementType.Word
-                        && _wordWorker.GetWordLength(currentElement) == wordLenght)
+                    if (currentElement.SentenceItemType == SentenceItemType.Word
+                        && _word.GetWordLength(currentElement) == wordLenght)
                     {
                         var str = currentElement.Value.ToUpper();
                         if (!words.Contains(str))
@@ -97,5 +97,12 @@ namespace Task_2.Classes
                 Console.WriteLine(result);
             }
         }
+        public void DeleteWordsOfPredeterminedLenght(Text text, int wordLenght)
+        {
+
+
+
+        }
+
     }
 }

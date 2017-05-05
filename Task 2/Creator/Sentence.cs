@@ -51,7 +51,7 @@ namespace Task_2.Classes
 
         public int GetElementsCount()
         {
-            return _sententenceElements.Count; 
+            return _sententenceElements.Count;
         }
 
         public ISentenceItem GetElementByIndex(int index)
@@ -63,23 +63,6 @@ namespace Task_2.Classes
         public void DeleteWords(int wordLenght)
         {
             // сделать через LINQ
-
-            //// Использование точечной нотации
-            //IEnumerable<string> sequence = _sententenceElements
-            //  .Where(n => n.Length < 6)
-            //  .Select(n => n);
-
-            // Использование синтаксиса выражения запроса
-           var sequence = from n in _sententenceElements
-                                           where n.SentenceItemType == SentenceItemType.Word
-                                           , _word.GetWordLength(_sententenceElements[i]) == wordLenght
-                                           select n;
-
-            foreach (string name in sequence)
-            {
-                Console.WriteLine("{0}", name);
-            }
-
             for (int i = 0; i <= _sententenceElements.Count; i++)
             {
                 if (_sententenceElements[i].SentenceItemType == SentenceItemType.Word
@@ -91,7 +74,6 @@ namespace Task_2.Classes
                 }
             }
         }
-
         public void ReplaceWords(int wordLenght, string newValue)
         {
             throw new NotImplementedException();

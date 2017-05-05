@@ -25,17 +25,34 @@ namespace Task_2.Classes
             }
             else return false;
         }
+        //public void FirstLetter(ISentenceItem element)
+        //{
+        //    var earlyQuery =                   
+        //           from word in element
+        //           let w = word.ToLower()
+        //           where w[0] != 'a' || w[0] == 'e'
+        //               || w[0] == 'i' || w[0] == 'o'
+        //               || w[0] == 'u'
+        //           select word;
+
+        //    // Execute the query.
+        //    foreach (var v in earlyQuery)
+        //    {
+        //        string[] firstLetter = v;
+        //    }
+        //}
         public int GetWordLength(ISentenceItem element)
         {
             return element.Value.Length;
         }
-       
+
         public void ReplaceValue(int wordLenght, ISentenceItem element, string newValue)
         {
             if (element.SentenceItemType == SentenceItemType.Word && GetWordLength(element) == wordLenght)
             {
                 element.Value = newValue;
             }
+        }
         }
     }
 
