@@ -10,7 +10,6 @@ namespace Task_2.Interfaces
     {
         int GetWordLength(ISentenceItem element);
         bool FirstLetterIsConsonant(ISentenceItem element);
-       // string GetWordsWithFirstLetterIsConsonant(ISentenceItem element);
         void ReplaceValue(int wordLenght, ISentenceItem element, string newValue);
     }
 }

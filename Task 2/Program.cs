@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Task_2.Classes;
-using Task_2.Classes.Opener_and_Reader;
+using Task_2.Creator;
+using Task_2.Opener_and_Reader;
 using Task_2.Parser;
 
 namespace Task_2
@@ -25,14 +26,14 @@ namespace Task_2
             Console.WriteLine(text);
             Console.WriteLine(line);
 
-            ///1 Вывести все предложения заданного текста в порядке возрастания количества слов в каждом из них.
+            //1 Вывести все предложения заданного текста в порядке возрастания количества слов в каждом из них.
             foreach (var item in text.SortSentences())
             {
                 Console.WriteLine("{0},  -- {1} -- words", item, item.GetWordsCount());
             }
             Console.WriteLine(line);
 
-            ///2 Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
+            //2 Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
             var temp = text.FindWordsOfPredeterminedLenght(text, 5);
             foreach (var i in temp)
             {
@@ -40,16 +41,16 @@ namespace Task_2
             }
             Console.WriteLine(line);
 
-            ///3 Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
+            //3 Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
             Console.WriteLine("3 Из текста удалить все слова заданной длины (7), начинающиеся на согласную букву.");
             text.RemoveWords(7);
             Console.WriteLine(text);
             Console.WriteLine(line);
 
-            ///4 В некотором предложении текста слова заданной длины заменить указанной подстрокой, 
-            ///длина которой может не совпадать с длиной слова.
+            //4 В некотором предложении текста слова заданной длины заменить указанной подстрокой, 
+            //длина которой может не совпадать с длиной слова.
             Console.WriteLine("4 В некотором предложении текста слова заданной длины заменить указанной подстрокой, длина которой может не совпадать с длиной слова.");
-            text.ReplaceWords(0, 3, "Change");
+            text.ReplaceWords(0, 2, "CHANGE");
             Console.WriteLine(text);
             Console.WriteLine(line);
 

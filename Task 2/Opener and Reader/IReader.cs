@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Task_2.Classes.Opener_and_Reader
+namespace Task_2.Opener_and_Reader
 {
    public interface IReader
     {

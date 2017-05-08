@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Task_2.Classes;
 using Task_2.Enums;
 using Task_2.Interfaces;
 
-namespace Task_2.Classes
+namespace Task_2.Creator
 {
     public class Text
     {
@@ -30,7 +29,8 @@ namespace Task_2.Classes
         }
         public IEnumerable<ISentence> SortSentences()
         {
-            return _sentences.OrderBy(x => x.GetWordsCount());
+            var sent = _sentences;
+            return sent.OrderBy(x => x.GetWordsCount());
         }
         //"Text.ToString()" скрывает наследуемый член "object.ToString()". Чтобы текущий член переопределял эту реализацию, исп.  override
         public override string ToString()
@@ -41,34 +41,38 @@ namespace Task_2.Classes
         //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
         public List<ISentence> GetQuestionSentences()
         {
-            List<ISentence> questionSentences = new List<ISentence>();
-            foreach (var chosenSentence in _sentences)
-            {
-                var count = chosenSentence.GetElementsCount();
-                var chosenElement = chosenSentence.GetElementByIndex(count - 1);
-                if (chosenElement == null) continue;
-                if (_punctuationMark.IsQuestionMark(chosenElement))
-                {
-                    questionSentences.Add(chosenSentence);
-                }
-            }
-            return questionSentences;
-        }
-        public List<ISentence> GetSentences()
-        {
-            return _sentences;
+            //List<ISentence> questionSentences = new List<ISentence>();
+            //foreach (var chosenSentence in _sentences)
+            //{
+            //    var count = chosenSentence.GetElementsCount();
+            //    var chosenElement = chosenSentence.GetElementByIndex(count - 1);
+            //    if (chosenElement == null) continue;
+            //    if (_punctuationMark.IsQuestionMark(chosenElement))
+            //    {
+            //        questionSentences.Add(chosenSentence);
+            //    }
+            //}
+            //return questionSentences;
+            return (from chosenSentence in _sentences
+                    let count = chosenSentence.GetElementsCount()
+                    let chosenElement = chosenSentence.GetElementByIndex(count - 1)
+                    where chosenElement != null
+                    where _punctuationMark.IsQuestionMark(chosenElement)
+                    select chosenSentence).ToList();
         }
         public void RemoveWords(int wordLenght)
         {
-            foreach (var chosenSentence in _sentences)
+            var sent = _sentences;
+            foreach (var chosenSentence in sent)
             {
                 chosenSentence.DeleteWords(wordLenght);
             }
         }
         public void ReplaceWords(int indexSentense, int wordLenght, string newValue)
         {
-            var currentSentence = _sentences[indexSentense];
-            if (currentSentence == null) return;
+            var sent = _sentences;
+            var currentSentence = sent[indexSentense];
+            //if (currentSentence == null) return;
             currentSentence.ReplaceWords(wordLenght, newValue);
         }
         public IEnumerable<string> FindWordsOfPredeterminedLenght(Text text, int wordLenght)
@@ -79,14 +83,12 @@ namespace Task_2.Classes
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)
                 {
                     var currentElement = currentSentence.GetElementByIndex(i);
-                    if (currentElement.SentenceItemType == SentenceItemType.Word
-                        && _word.GetWordLength(currentElement) == wordLenght)
+                    if (currentElement.SentenceItemType != SentenceItemType.Word ||
+                        _word.GetWordLength(currentElement) != wordLenght) continue;
+                    var str = currentElement.Value.ToUpper();
+                    if (!words.Contains(str))
                     {
-                        var str = currentElement.Value.ToUpper();
-                        if (!words.Contains(str))
-                        {
-                            words.Add(str);
-                        }
+                        words.Add(str);
                     }
                 }
             }

@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using Task_2.Enums;
 using Task_2.Interfaces;
 
-namespace Task_2.Classes
+namespace Task_2.Creator
 {
     public class Word : IWord
     {
         public bool FirstLetterIsConsonant(ISentenceItem element)
         {
-            string pattern = @"[^aAeEiIoOuU]";
+            const string pattern = @"[aAeEiIoOuU]";
             if (element.SentenceItemType == SentenceItemType.Word)
             {
                 // проверка, чтоб слово не было null или Empty и чтоб были слова, начинающиеся с согласной
-                if (!string.IsNullOrEmpty(element.Value) && !(Regex.Matches(element.Value[0].ToString(), pattern).Count > 0))
-                {
-                    return true;
-                }
-                else return false;
+                //    if (!string.IsNullOrEmpty(element.Value) && !(Regex.Matches(element.Value[0].ToString(), pattern).Count > 0))
+                //    {
+                //        return true;
+                //    }
+                //    else return false;
+                //}
+                //else return false;
+                return !string.IsNullOrEmpty(element.Value) && !(Regex.Matches(element.Value[0].ToString(), pattern).Count > 0);
             }
-            else return false;
+             return false;
         }
         public int GetWordLength(ISentenceItem element)
         {

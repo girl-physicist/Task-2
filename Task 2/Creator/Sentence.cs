@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Task_2.Classes;
 using Task_2.Enums;
 using Task_2.Interfaces;
 
-namespace Task_2.Classes
+namespace Task_2.Creator
 {
     public class Sentence : ISentence
     {
@@ -25,45 +24,39 @@ namespace Task_2.Classes
         }
         public int GetWordsCount()
         {
-            int count = 0;
-            foreach (var sentenceElement in _sententenceElements)
-            {
-                if (sentenceElement.SentenceItemType == SentenceItemType.Word)
-                {
-                    count++;
-                }
-            }
-            return count;
+            //int count = 0;
+            //foreach (var sentenceElement in _sententenceElements)
+            //{
+            //    if (sentenceElement.SentenceItemType == SentenceItemType.Word)
+            //    {
+            //        count++;
+            //    }
+            //}
+            //return count;
+            return _sententenceElements.Count(x => x.SentenceItemType == SentenceItemType.Word);
         }
         public int GetElementsCount()
         {
             return _sententenceElements.Count;
         }
-
         public ISentenceItem GetElementByIndex(int index)
         {
             if (index < 0 || index >= _sententenceElements.Count) return null;
             return _sententenceElements[index];
         }
-
         //Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
         public void DeleteWords(int wordLenght)
         {
-            //делать удаление в копии списка предложений, а не с исх предложениях
+            //делать удаление в копии списка предложений, а не в исх предложениях
             // сделать через LINQ
             var temp = _sententenceElements;
-            for (int i = 0; i < _sententenceElements.Count; i++)
+            for (int i = 0; i < temp.Count; i++)
             {
-                if (_sententenceElements[i].SentenceItemType == SentenceItemType.Word
-                    && _word.GetWordLength(_sententenceElements[i]) == wordLenght
-                    && _word.FirstLetterIsConsonant(_sententenceElements[i]))
-                {
-                    _sententenceElements.Remove(_sententenceElements[i]);
-                    i--;
-                }
+                if (temp[i].SentenceItemType != SentenceItemType.Word || _word.GetWordLength(temp[i]) != wordLenght ||
+                    !_word.FirstLetterIsConsonant(temp[i])) continue;
+                temp.Remove(temp[i]);
+                i--;
             }
-            //return temp;
-
         }
             public void ReplaceWords(int wordLenght, string newValue)
             {
