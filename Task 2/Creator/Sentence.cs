@@ -17,7 +17,6 @@ namespace Task_2.Creator
             _word = new Word();
             _sententenceElements = new List<ISentenceItem>();
         }
-
         public void AddElementToEnd(ISentenceItem element)
         {
             _sententenceElements.Add(element);

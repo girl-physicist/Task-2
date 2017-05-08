@@ -46,7 +46,6 @@
     <Compile Include="Creator\Sentence.cs" />
     <Compile Include="Opener and Reader\IReader.cs" />
     <Compile Include="Opener and Reader\Reader.cs" />
-    <Compile Include="Classes\Punctuation.cs" />
     <Compile Include="Classes\SentenceItem.cs" />
     <Compile Include="Creator\Text.cs" />
     <Compile Include="Creator\Word.cs" />
@@ -64,9 +63,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

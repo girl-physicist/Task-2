@@ -72,7 +72,6 @@ namespace Task_2.Creator
         {
             var sent = _sentences;
             var currentSentence = sent[indexSentense];
-            //if (currentSentence == null) return;
             currentSentence.ReplaceWords(wordLenght, newValue);
         }
         public IEnumerable<string> FindWordsOfPredeterminedLenght(Text text, int wordLenght)
@@ -93,7 +92,13 @@ namespace Task_2.Creator
                 }
             }
             return words.ToArray();
+            //return (from currentSentence in text.GetQuestionSentences()
+            //    let currentElement = currentSentence.GetElementByIndex(?????????)
+            //    where currentElement.SentenceItemType != SentenceItemType.Word ||
+            // _word.GetWordLength(currentElement) != wordLenght
+            //    let str = currentElement.Value.ToUpper()
+            //    where !words.Contains(str)
+            //    select str).ToList();
         }
-        
     }
 }
