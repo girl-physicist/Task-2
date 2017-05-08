@@ -43,10 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\InterrogativeSentence.cs" />
-    <Compile Include="Classes\Opener and Reader\IReader.cs" />
-    <Compile Include="Classes\Opener and Reader\Reader.cs" />
-    <Compile Include="Classes\Punctuation.cs" />
     <Compile Include="Creator\Sentence.cs" />
+    <Compile Include="Opener and Reader\IReader.cs" />
+    <Compile Include="Opener and Reader\Reader.cs" />
+    <Compile Include="Classes\Punctuation.cs" />
     <Compile Include="Classes\SentenceItem.cs" />
     <Compile Include="Creator\Text.cs" />
     <Compile Include="Creator\Word.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\ISentence.cs" />
     <Compile Include="Interfaces\ISentenceItem.cs" />
     <Compile Include="Interfaces\IWord.cs" />
+    <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

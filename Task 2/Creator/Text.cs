@@ -8,7 +8,7 @@ using Task_2.Interfaces;
 
 namespace Task_2.Classes
 {
-    class Text
+    public class Text
     {
         private readonly List<ISentence> _sentences;
         private readonly IWord _word;
@@ -65,15 +65,13 @@ namespace Task_2.Classes
                 chosenSentence.DeleteWords(wordLenght);
             }
         }
-
         public void ReplaceWords(int indexSentense, int wordLenght, string newValue)
         {
             var currentSentence = _sentences[indexSentense];
             if (currentSentence == null) return;
             currentSentence.ReplaceWords(wordLenght, newValue);
         }
-
-        public void FindWordsOfPredeterminedLenght(Text text, int wordLenght)
+        public IEnumerable<string> FindWordsOfPredeterminedLenght(Text text, int wordLenght)
         {
             List<string> words = new List<string>();
             foreach (var currentSentence in text.GetQuestionSentences())
@@ -92,17 +90,8 @@ namespace Task_2.Classes
                     }
                 }
             }
-            foreach (var result in words)
-            {
-                Console.WriteLine(result);
-            }
+            return words.ToArray();
         }
-        public void DeleteWordsOfPredeterminedLenght(Text text, int wordLenght)
-        {
-
-
-
-        }
-
+        
     }
 }

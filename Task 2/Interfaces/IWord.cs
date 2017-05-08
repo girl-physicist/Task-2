@@ -17,7 +17,7 @@ namespace Task_2.Interfaces
 // // Split the sentence into an array of words
 // and select those whose first letter is a Consonant.
 // var earlyQuery =
-//from sentence in _sententenceElements
+//from sentence in _sententences
 //let words = sentence.Split(' ')
 //               from word in words
 //               let w = word.ToLower()

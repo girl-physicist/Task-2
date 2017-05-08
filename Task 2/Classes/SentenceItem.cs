@@ -10,15 +10,12 @@ namespace Task_2.Classes
 {
     public class SentenceItem : ISentenceItem
     {
-        private string _value;
-        public string Value { get; set; }
-        private SentenceItemType _sentenceItemType;
         public SentenceItemType SentenceItemType { get; private set; }
-
+        public string Value { get; set; }
         public SentenceItem(string sentenceElementValue, SentenceItemType type)
         {
-            _value = sentenceElementValue;
-            _sentenceItemType = type;
+            Value = sentenceElementValue;
+           SentenceItemType = type;
         }
     }
 }

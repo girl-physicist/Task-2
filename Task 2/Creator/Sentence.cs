@@ -8,28 +8,8 @@ using Task_2.Interfaces;
 
 namespace Task_2.Classes
 {
-    class Sentence : ISentenceItem, ISentence
+    public class Sentence : ISentence
     {
-        private string _value; // объявление закрытого поля
-        public string Value // объявление свойства
-        {
-            get // аксессор чтения поля
-            {
-                return _value;
-            }
-            set // аксессор записи в поле
-            {
-                _value = value;
-            }
-        }
-        private SentenceItemType _sentenceItemType;
-        public SentenceItemType SentenceItemType
-        {
-            get
-            {
-                return _sentenceItemType;
-            }
-        }
         // присвоение значений таким полям может происходить только как часть объявления или в конструкторе в том же классе.
         private readonly List<ISentenceItem> _sententenceElements;
         private readonly IWord _word;
@@ -41,14 +21,20 @@ namespace Task_2.Classes
 
         public void AddElementToEnd(ISentenceItem element)
         {
-            throw new NotImplementedException();
+            _sententenceElements.Add(element);
         }
-
         public int GetWordsCount()
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (var sentenceElement in _sententenceElements)
+            {
+                if (sentenceElement.SentenceItemType == SentenceItemType.Word)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
-
         public int GetElementsCount()
         {
             return _sententenceElements.Count;
@@ -59,11 +45,14 @@ namespace Task_2.Classes
             if (index < 0 || index >= _sententenceElements.Count) return null;
             return _sententenceElements[index];
         }
+
         //Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
         public void DeleteWords(int wordLenght)
         {
+            //делать удаление в копии списка предложений, а не с исх предложениях
             // сделать через LINQ
-            for (int i = 0; i <= _sententenceElements.Count; i++)
+            var temp = _sententenceElements;
+            for (int i = 0; i < _sententenceElements.Count; i++)
             {
                 if (_sententenceElements[i].SentenceItemType == SentenceItemType.Word
                     && _word.GetWordLength(_sententenceElements[i]) == wordLenght
@@ -73,10 +62,37 @@ namespace Task_2.Classes
                     i--;
                 }
             }
+            //return temp;
+
         }
-        public void ReplaceWords(int wordLenght, string newValue)
+            public void ReplaceWords(int wordLenght, string newValue)
+            {
+                // делать замену в копии списка предложений, а не в исх предложениях
+                var sent = _sententenceElements;
+                foreach (var currentSentence in sent)
+                {
+                    _word.ReplaceValue(wordLenght, currentSentence, newValue);
+                }
+            }
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder builder = new StringBuilder();
+            builder.Append(_sententenceElements[0].Value);
+
+            for (int i = 1; i < _sententenceElements.Count; i++)
+            {
+                if (_sententenceElements[i].SentenceItemType == SentenceItemType.Word)
+                {
+                    builder.Append(" ");
+                }
+                builder.Append(_sententenceElements[i].Value);
+            }
+            return builder.ToString();
         }
+
+
     }
+
+       
+    
 }
