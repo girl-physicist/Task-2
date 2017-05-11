@@ -8,6 +8,6 @@ namespace Task_2.Parser
 {
     public interface IParser<T>
     {
-        T Parse(List<string> str);
+        T Parse(IEnumerable<string> str);
     }
 }

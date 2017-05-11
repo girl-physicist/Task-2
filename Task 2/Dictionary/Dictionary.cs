@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Task_2.Dictionary
 {
-   public class Dictionary
+    public class Dictionary
     {
-        Dictionary<int, string> SortSentences = new Dictionary<int, string>
+        Dictionary<string, string> EndOfSentenceСharacters = new Dictionary<string, string>
         {
-            [1] = "GetWordsCount()",
-            [2] = "GetElementsCount()"
+            ["pointIndex"] = ".",
+            ["exlamationIndex"] = "!",
+            ["questionIndex"] = "?",
+            ["ellipsisIndex"] = "...",
+            ["interrogatoryExclamationIndex"] = "?!",
+            ["hardExclamationIndex"] = "!!"
         };
     }
 }

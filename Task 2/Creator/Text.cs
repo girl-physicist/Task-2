@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Task_2.Classes;
 using Task_2.Enums;
 using Task_2.Interfaces;
@@ -9,16 +10,13 @@ namespace Task_2.Creator
 {
     public class Text
     {
-        private readonly List<ISentence> _sentences;
-        private readonly IWord _word;
+        private readonly ICollection<ISentence> _sentences;
         private readonly IInterrogativeSentence _punctuationMark;
-        public Text()
+        public Text(ICollection<ISentence> sent, InterrogativeSentence questionMark)
         {
-            _word = new Word();
-            _sentences = new List<ISentence>();
-            _punctuationMark = new InterrogativeSentence();
+            _sentences = sent;
+            _punctuationMark = questionMark;
         }
-
         public void AddSentence(ISentence sentence)
         {
             _sentences.Add(sentence);
@@ -29,30 +27,16 @@ namespace Task_2.Creator
         }
         public IEnumerable<ISentence> SortSentences()
         {
-            var sent = _sentences;
-            return sent.OrderBy(x => x.GetWordsCount());
+            return _sentences.OrderBy(x => x.GetWordsCount());
         }
         //"Text.ToString()" скрывает наследуемый член "object.ToString()". Чтобы текущий член переопределял эту реализацию, исп.  override
         public override string ToString()
         {
-            // сепаратор Environment.NewLine равносилен  "\r\n" 
             return string.Join(Environment.NewLine, _sentences);
         }
         //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
-        public List<ISentence> GetQuestionSentences()
+        public IEnumerable<ISentence> GetQuestionSentences()
         {
-            //List<ISentence> questionSentences = new List<ISentence>();
-            //foreach (var chosenSentence in _sentences)
-            //{
-            //    var count = chosenSentence.GetElementsCount();
-            //    var chosenElement = chosenSentence.GetElementByIndex(count - 1);
-            //    if (chosenElement == null) continue;
-            //    if (_punctuationMark.IsQuestionMark(chosenElement))
-            //    {
-            //        questionSentences.Add(chosenSentence);
-            //    }
-            //}
-            //return questionSentences;
             return (from chosenSentence in _sentences
                     let count = chosenSentence.GetElementsCount()
                     let chosenElement = chosenSentence.GetElementByIndex(count - 1)
@@ -62,28 +46,27 @@ namespace Task_2.Creator
         }
         public void RemoveWords(int wordLenght)
         {
-            var sent = _sentences;
-            foreach (var chosenSentence in sent)
+            foreach (var chosenSentence in _sentences)
             {
                 chosenSentence.DeleteWords(wordLenght);
             }
         }
         public void ReplaceWords(int indexSentense, int wordLenght, string newValue)
         {
-            var sent = _sentences;
-            var currentSentence = sent[indexSentense];
+            var currentSentence = _sentences.ElementAt(indexSentense);
             currentSentence.ReplaceWords(wordLenght, newValue);
         }
         public IEnumerable<string> FindWordsOfPredeterminedLenght(Text text, int wordLenght)
         {
-            List<string> words = new List<string>();
+            IWord word=new Word();
+            ICollection<string> words = new List<string>();
             foreach (var currentSentence in text.GetQuestionSentences())
             {
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)
                 {
                     var currentElement = currentSentence.GetElementByIndex(i);
                     if (currentElement.SentenceItemType != SentenceItemType.Word ||
-                        _word.GetWordLength(currentElement) != wordLenght) continue;
+                        word.GetWordLength(currentElement) != wordLenght) continue;
                     var str = currentElement.Value.ToUpper();
                     if (!words.Contains(str))
                     {
@@ -92,13 +75,12 @@ namespace Task_2.Creator
                 }
             }
             return words.ToArray();
-            //return (from currentSentence in text.GetQuestionSentences()
-            //    let currentElement = currentSentence.GetElementByIndex(?????????)
-            //    where currentElement.SentenceItemType != SentenceItemType.Word ||
-            // _word.GetWordLength(currentElement) != wordLenght
-            //    let str = currentElement.Value.ToUpper()
-            //    where !words.Contains(str)
-            //    select str).ToList();
+
+
+            //return text.GetQuestionSentences()
+            //    .OfType<Word>() .SelectMany(x=x.ofType<Word>)
+            // .Where(y => y.GetWordLength(word) == wordLenght)
+            //   .ToArray().Distinct();
         }
     }
 }

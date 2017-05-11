@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,24 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
-            string line = "=============================================================";
+
+           
+                
+           
+
+        
+
+
+
+
+        string line = "=============================================================";
             string line2=String.Empty;
-            IReader r = new Reader("input.txt");
-            List<string> listSentences = new List<string>();
+           IReader r = new Reader("input.txt");
+           IEnumerable<string> listSentences = new List<string>();
+            IEnumerable<string> listSentences1 = new List<string>();
             IParser<Text> parser = new TextParser();
-            listSentences = r.Read();
+          listSentences = r.Read();
+            listSentences1 = r.Read1();
             var text = parser.Parse(listSentences);
 
             Console.WriteLine("Original version");
@@ -67,5 +80,8 @@ namespace Task_2
             Console.WriteLine(line);
             Console.ReadKey();
         }
+
+        
+
     }
 }
