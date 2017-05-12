@@ -17,11 +17,11 @@ namespace Task_2.Parser
         public Text Parse(IEnumerable<string> sentences)
         {
             {
-                var text = new Text(new List<ISentence>(), new InterrogativeSentence());
+                   var text = new Text(new List<ISentence>(), new InterrogativeSentence());
                 const string pattern = @"(\w+)|(\p{P})";
                 foreach (var currentSentence in sentences)
                 {
-                    var sentence = new Sentence(new List<ISentenceItem>()) ;
+                    var sentence = new Sentence(new List<ISentenceItem>(),new Word()) ;
                     var matches = Regex.Matches(currentSentence, pattern);
                     foreach (Match match in matches)
                     {

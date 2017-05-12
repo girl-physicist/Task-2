@@ -12,8 +12,6 @@ namespace Task_2.Classes
     {
         public SentenceItemType SentenceItemType { get; }
         public string Value { get; set; }
-        public SentenceItem()
-        { }
         public SentenceItem(string sentenceElementValue, SentenceItemType type)
         {
             Value = sentenceElementValue;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Task_2.Opener_and_Reader
 {
@@ -21,30 +22,6 @@ namespace Task_2.Opener_and_Reader
         {
             _fileName = fName;
         }
-
-        //void IReader.ReadAndDisplayFilesAsync()
-        //{
-        //    ReadAndDisplayFilesAsync(_fileName);
-        //}
-        //private static async void ReadAndDisplayFilesAsync(string fileName)
-        //{
-        //    String filename =  fileName;
-        //    Char[] buffer;
-
-        //    using (var sr = new StreamReader(filename))
-        //    {
-        //        buffer = new Char[(int)sr.BaseStream.Length];
-        //        await sr.ReadAsync(buffer, 0, (int)sr.BaseStream.Length);
-        //    }
-        //    Console.WriteLine(new String(buffer));
-        //}
-
-
-
-
-
-        
-
         public  IEnumerable<string> Read()
         {
                 FileStream stream = new FileStream(_fileName, FileMode.Open);
@@ -54,7 +31,7 @@ namespace Task_2.Opener_and_Reader
                 while (!reader.EndOfStream)
                 {
                     str = reader.ReadLine();
-                    result.AddRange(SplitText(str, reader.EndOfStream));
+                    result.AddRange(_splitText(str, reader.EndOfStream));
                 }
                 reader.Close();
                 return result;
@@ -73,19 +50,33 @@ namespace Task_2.Opener_and_Reader
             reader.Close();
             return original;
         }
-        private IEnumerable<string> SplitText(string line, bool isLastLine)
+
+        //private readonly Dictionary<string, string> _endOfSentenceСharacters = new Dictionary<string, string>
+        //{
+        //    ["pointIndex"] = ".",
+        //    ["exlamationIndex"] = "!",
+        //    ["questionIndex"] = "?",
+        //    ["ellipsisIndex"] = "...",
+        //    ["interrogatoryExclamationIndex"] = "?!",
+        //    ["hardExclamationIndex"] = "!!"
+        //};
+        private IEnumerable<string> _splitText(string line, bool isLastLine)
         {
             line = string.Join(" ", _line, line);
             List<string> sentences = new List<string>();
             string remained = line;
+          
             while (remained.Length > 0)
             {
-                // Добавить другие варианты окончания предложения (через Dictionary???)
                 int pointIndex = remained.IndexOf('.');
                 int exlamationIndex = remained.IndexOf('!');
                 int questionIndex = remained.IndexOf('?');
+                int ellipsisIndex = remained.IndexOf("...", StringComparison.Ordinal);
+                int interrogatoryExclamationIndex = remained.IndexOf("?!", StringComparison.Ordinal);
+                int hardExclamationIndex = remained.IndexOf("!!", StringComparison.Ordinal);
 
-                if (pointIndex < 0 && exlamationIndex < 0 && questionIndex < 0)
+                if (pointIndex < 0 && exlamationIndex < 0 && questionIndex < 0 && ellipsisIndex < 0 && interrogatoryExclamationIndex
+                    < 0 && hardExclamationIndex < 0 )
                 {
                     if (isLastLine)
                     {
@@ -98,6 +89,12 @@ namespace Task_2.Opener_and_Reader
                     endOfSentence = exlamationIndex;
                 if (questionIndex > -1 && questionIndex < endOfSentence)
                     endOfSentence = questionIndex;
+                if (ellipsisIndex > -1 && ellipsisIndex < endOfSentence)
+                    endOfSentence = ellipsisIndex;
+                if (interrogatoryExclamationIndex > -1 && interrogatoryExclamationIndex < endOfSentence)
+                    endOfSentence = interrogatoryExclamationIndex;
+                if (hardExclamationIndex > -1 && hardExclamationIndex < endOfSentence)
+                    endOfSentence = hardExclamationIndex;
                 sentences.Add(remained.Substring(0, endOfSentence + 1));
                 remained = remained.Substring(endOfSentence + 1);
                 _line = remained;

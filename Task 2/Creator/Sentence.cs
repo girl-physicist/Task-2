@@ -12,9 +12,9 @@ namespace Task_2.Creator
         // присвоение значений таким полям может происходить только как часть объявления или в конструкторе в том же классе.
         private readonly ICollection<ISentenceItem> _sententenceElements;
         private readonly IWord _word;
-        public Sentence(ICollection<ISentenceItem> sent)
+        public Sentence(ICollection<ISentenceItem> sent, Word word)
         {
-           _word = new Word();
+            _word = word;
             _sententenceElements = sent;
         }
         public void AddElementToEnd(ISentenceItem element)
@@ -34,17 +34,9 @@ namespace Task_2.Creator
             if (index < 0 || index >= _sententenceElements.Count) return null;
             return _sententenceElements.ElementAt(index);
         }
-        //Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
         public void DeleteWords(int wordLenght)
         {
-
             // сделать через LINQ
-
-            //text.GetQuestionSentences().OfType<IWord>()
-            //    .Where(y => y.GetWordLength(word) == wordLenght)
-            //    .ToArray().Distinct();
-
-
             for (int i = 0; i < _sententenceElements.Count; i++)
             {
                 if (_sententenceElements.ElementAt(i).SentenceItemType != SentenceItemType.Word
@@ -78,3 +70,7 @@ namespace Task_2.Creator
         }
     }
 }
+
+
+
+

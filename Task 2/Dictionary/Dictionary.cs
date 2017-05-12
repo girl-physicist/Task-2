@@ -8,7 +8,7 @@ namespace Task_2.Dictionary
 {
     public class Dictionary
     {
-        Dictionary<string, string> EndOfSentenceСharacters = new Dictionary<string, string>
+     public   Dictionary<string, string> EndOfSentenceСharacters = new Dictionary<string, string>
         {
             ["pointIndex"] = ".",
             ["exlamationIndex"] = "!",

@@ -11,11 +11,11 @@ namespace Task_2.Creator
     public class Text
     {
         private readonly ICollection<ISentence> _sentences;
-        private readonly IInterrogativeSentence _punctuationMark;
+        private readonly IInterrogativeSentence _qustionMark;
         public Text(ICollection<ISentence> sent, InterrogativeSentence questionMark)
         {
             _sentences = sent;
-            _punctuationMark = questionMark;
+            _qustionMark = questionMark;
         }
         public void AddSentence(ISentence sentence)
         {
@@ -25,23 +25,21 @@ namespace Task_2.Creator
         {
             _sentences.Remove(sentence);
         }
-        public IEnumerable<ISentence> SortSentences()
+        public IEnumerable<ISentence> SortSentencesByWordsCount()
         {
             return _sentences.OrderBy(x => x.GetWordsCount());
         }
-        //"Text.ToString()" скрывает наследуемый член "object.ToString()". Чтобы текущий член переопределял эту реализацию, исп.  override
         public override string ToString()
         {
             return string.Join(Environment.NewLine, _sentences);
         }
-        //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
         public IEnumerable<ISentence> GetQuestionSentences()
         {
             return (from chosenSentence in _sentences
                     let count = chosenSentence.GetElementsCount()
                     let chosenElement = chosenSentence.GetElementByIndex(count - 1)
                     where chosenElement != null
-                    where _punctuationMark.IsQuestionMark(chosenElement)
+                    where _qustionMark.IsQuestionMark(chosenElement)
                     select chosenSentence).ToList();
         }
         public void RemoveWords(int wordLenght)
