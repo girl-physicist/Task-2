@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using Task_2.Classes;
 using Task_2.Creator;
 using Task_2.Opener_and_Reader;
 using Task_2.Parser;
+using Task_2.Task_2_part_2;
+
 
 namespace Task_2
 {
@@ -15,20 +18,37 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
+           
             string line = "=============================================================";
             string line2 = String.Empty;
-            IReader r = new Reader("input.txt");
+            string fileName = "input.txt";
+            IReader r = new Reader(fileName);
             IEnumerable<string> listSentences = new List<string>();
             IEnumerable<string> listSentences1 = new List<string>();
+            IEnumerable<string> listSentences3 = new List<string>();
             IParser<Text> parser = new TextParser();
-            listSentences = r.Read();
-            listSentences1 = r.Read1();
-            var text = parser.Parse(listSentences);
+
+            Class1 cl = new Class1();
+           var vvv= cl.Some(2, fileName);
+
+            listSentences = r.Read(TypeOfRead.OriginalText);
+            listSentences1 = r.Read(TypeOfRead.SpliText);
+            listSentences3 = r.Read(TypeOfRead.TexstToLower);
+            var text = parser.Parse(listSentences1);
+
+            string word = vvv.Item1;
+            int countEntries = vvv.Item2;
+            string pages = vvv.Item3;
+
+            Console.WriteLine("{0}....Count: {1},Pages: {2}", word
+                , countEntries, string.Join(",", pages.Select(item => item.ToString())));
+
             // 0 Вывод исходной версии
             Console.WriteLine("Original version");
             Console.WriteLine(line2);
-            Console.WriteLine(parser.Parse(listSentences1));
+            Console.WriteLine(parser.Parse(listSentences));
             Console.WriteLine(line);
+            Console.WriteLine();
             // 1 Вывести все предложения заданного текста в порядке возрастания количества слов в каждом из них.
             Console.WriteLine("1 Output all sentences of the given text in ascending order of the number of words in each of them.");
             Console.WriteLine(line2);
@@ -71,6 +91,10 @@ namespace Task_2
             Console.WriteLine(line2);
             Console.WriteLine(text);
             Console.WriteLine(line);
+
+
+           
+           
             Console.ReadKey();
         }
     }

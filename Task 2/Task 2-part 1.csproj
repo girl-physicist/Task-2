@@ -49,20 +49,22 @@
     <Compile Include="Classes\SentenceItem.cs" />
     <Compile Include="Creator\Text.cs" />
     <Compile Include="Creator\Word.cs" />
-    <Compile Include="Dictionary\Dictionary.cs" />
     <Compile Include="Enums\SentenceItemType.cs" />
     <Compile Include="Interfaces\IInterrogativeSentence.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
     <Compile Include="Interfaces\ISentenceItem.cs" />
     <Compile Include="Interfaces\IWord.cs" />
+    <Compile Include="Opener and Reader\TypeOfRead.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task_2_part_2\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
