@@ -3,7 +3,6 @@
   public  enum TypeOfRead
     {
         OriginalText,
-        SpliText,
-        TexstToLower
+        SpliText
     }
 }

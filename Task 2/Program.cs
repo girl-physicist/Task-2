@@ -49,7 +49,7 @@ namespace Task_2
             Console.WriteLine(line2);
             Console.WriteLine("Enter the length of the word");
             var length = Convert.ToInt32(Console.ReadLine());
-            var temp = text.FindWordsOfPredeterminedLenght(text, length);
+            var temp = text.FindWordsOfPredeterminedLenght( length);
             foreach (var i in temp)
             {
                 Console.WriteLine(i);

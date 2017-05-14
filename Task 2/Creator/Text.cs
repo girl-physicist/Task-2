@@ -54,11 +54,11 @@ namespace Task_2.Creator
             var currentSentence = _sentences.ElementAt(indexSentense);
             currentSentence.ReplaceWords(wordLenght, newValue);
         }
-        public IEnumerable<string> FindWordsOfPredeterminedLenght(Text text, int wordLenght)
+        public IEnumerable<string> FindWordsOfPredeterminedLenght(int wordLenght)
         {
             IWord word=new Word();
             ICollection<string> words = new List<string>();
-            foreach (var currentSentence in text.GetQuestionSentences())
+            foreach (var currentSentence in GetQuestionSentences())
             {
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)
                 {

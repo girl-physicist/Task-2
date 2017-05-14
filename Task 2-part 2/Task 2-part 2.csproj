@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADE1428F-0064-4B49-890B-4A30B567B34A}</ProjectGuid>
+    <ProjectGuid>{B63B8BC3-D972-47DE-9354-6F010F178A61}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task_2</RootNamespace>
-    <AssemblyName>Task 2</AssemblyName>
+    <RootNamespace>Task_2_part_2</RootNamespace>
+    <AssemblyName>Task 2-part 2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,30 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\InterrogativeSentence.cs" />
-    <Compile Include="Creator\Sentence.cs" />
-    <Compile Include="Opener and Reader\IReader.cs" />
-    <Compile Include="Opener and Reader\Reader.cs" />
-    <Compile Include="Classes\SentenceItem.cs" />
-    <Compile Include="Creator\Text.cs" />
-    <Compile Include="Creator\Word.cs" />
-    <Compile Include="Enums\SentenceItemType.cs" />
-    <Compile Include="Interfaces\IInterrogativeSentence.cs" />
-    <Compile Include="Interfaces\ISentence.cs" />
-    <Compile Include="Interfaces\ISentenceItem.cs" />
-    <Compile Include="Interfaces\IWord.cs" />
-    <Compile Include="Opener and Reader\TypeOfRead.cs" />
-    <Compile Include="Parser\IParser.cs" />
-    <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="part_2\ISubjectIndex.cs" />
-    <Compile Include="part_2\SubjectIndex.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,15 +29,12 @@ namespace Task_2.Opener_and_Reader
             ICollection<string> result = new List<string>();
             ICollection<string> originalText = new List<string>();
             List<string> spliText = new List<string>();
-            ICollection<string> texstToLower = new List<string>();
-            List<string> splitTexstToLower = new List<string>();
             string str = _line;
             while (!reader.EndOfStream)
             {
                 str = reader.ReadLine();
                 originalText.Add(str);
                 spliText.AddRange(SplitText(str, reader.EndOfStream));
-                texstToLower.Add(str.ToLower());
             }
             reader.Close();
             if (mode == TypeOfRead.OriginalText)
@@ -47,10 +44,6 @@ namespace Task_2.Opener_and_Reader
             if (mode == TypeOfRead.SpliText)
             {
                 result = spliText;
-            }
-            if (mode == TypeOfRead.TexstToLower)
-            {
-                result = texstToLower;
             }
             return result;
         }
@@ -82,25 +75,6 @@ namespace Task_2.Opener_and_Reader
                 _line = remained;
             }
             return sentences;
-        }
-        public IEnumerable<string> GetWords(string[] str)
-        {
-            List<string> Return = new List<string>();
-            string line = _line;
-            foreach (var i in str)
-            {
-                line = line + i;
-            }
-            line = String.Join(_line, line);
-            string HRefPattern = @"([[^\wA-Za-z]+)";
-            var m = Regex.Match(line, HRefPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
-            while (m.Success)
-            {
-                int index = Return.IndexOf(m.Groups[1].Value);
-                if (index == -1) Return.Add(m.Groups[1].Value);
-                m = m.NextMatch();
-            }
-            return Return.OrderBy(x => x);
         }
     }
 }
