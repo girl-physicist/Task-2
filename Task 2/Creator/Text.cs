@@ -56,29 +56,19 @@ namespace Task_2.Creator
         }
         public IEnumerable<string> FindWordsOfPredeterminedLenght(int wordLenght)
         {
-            IWord word=new Word();
-            ICollection<string> words = new List<string>();
+            IWord word = new Word();
+            ICollection<ISentenceItem> buffer =new List<ISentenceItem>();
             foreach (var currentSentence in GetQuestionSentences())
             {
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)
                 {
                     var currentElement = currentSentence.GetElementByIndex(i);
-                    if (currentElement.SentenceItemType != SentenceItemType.Word ||
-                        word.GetWordLength(currentElement) != wordLenght) continue;
-                    var str = currentElement.Value.ToUpper();
-                    if (!words.Contains(str))
-                    {
-                        words.Add(str);
-                    }
+                    buffer.Add(currentElement);
                 }
             }
-            return words.ToArray();
-
-
-            //return text.GetQuestionSentences()
-            //    .OfType<Word>() .SelectMany(x=x.ofType<Word>)
-            // .Where(y => y.GetWordLength(word) == wordLenght)
-            //   .ToArray().Distinct();
+            return buffer.ToArray()
+                .Where(x => x.SentenceItemType == SentenceItemType.Word && word.GetWordLength(x) == wordLenght)
+                .Select(x => x.Value.ToUpper()).Distinct().ToArray();
         }
     }
 }
