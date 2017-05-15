@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B63B8BC3-D972-47DE-9354-6F010F178A61}</ProjectGuid>
+    <ProjectGuid>{57FA631C-80B8-4A21-AE5F-7998A7F0DB56}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task_2_part_2</RootNamespace>
-    <AssemblyName>Task 2-part 2</AssemblyName>
+    <RootNamespace>Task_2_Part_2</RootNamespace>
+    <AssemblyName>Task 2-Part 2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo.cs" />
+    <Compile Include="Parser\IParser.cs" />
+    <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject index\DictionaryNod.cs" />
+    <Compile Include="Subject index\Symbol.cs" />
+    <Compile Include="Subject index\Text.cs" />
+    <Compile Include="Subject index\Tree.cs" />
+    <Compile Include="Subject index\Word.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Task 2\Task 2-part 1.csproj">
+      <Project>{ade1428f-0064-4b49-890b-4a30b567b34a}</Project>
+      <Name>Task 2-part 1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

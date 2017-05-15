@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Task_2.Opener_and_Reader
+namespace Task_2.Reader
 {
     public class Reader : IReader
     {
@@ -29,12 +25,20 @@ namespace Task_2.Opener_and_Reader
             ICollection<string> result = new List<string>();
             ICollection<string> originalText = new List<string>();
             List<string> spliText = new List<string>();
-            string str = _line;
+            ICollection<string> textToLower = new List<string>();
             while (!reader.EndOfStream)
             {
-                str = reader.ReadLine();
+                var str = reader.ReadLine();
                 originalText.Add(str);
                 spliText.AddRange(SplitText(str, reader.EndOfStream));
+                if (str != null) textToLower.Add(str.ToLower()
+                .Replace("\"", "")
+                .Replace("\t", "")
+                .Replace("—", "")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace("!", "")
+                .Replace("?", ""));
             }
             reader.Close();
             if (mode == TypeOfRead.OriginalText)
@@ -44,6 +48,10 @@ namespace Task_2.Opener_and_Reader
             if (mode == TypeOfRead.SpliText)
             {
                 result = spliText;
+            }
+            if (mode == TypeOfRead.TextToLower)
+            {
+                result = textToLower;
             }
             return result;
         }

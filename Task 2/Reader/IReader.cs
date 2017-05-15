@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Task_2.Opener_and_Reader
+namespace Task_2.Reader
 {
    public interface IReader
    {

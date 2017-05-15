@@ -12,7 +12,7 @@ namespace Task_2.Interfaces
         int GetWordsCount();
         int GetElementsCount();
         ISentenceItem GetElementByIndex(int index);
-        void DeleteWords(int wordLenght);
+        void DeleteWordsOfGivenLength(int wordLenght);
         void ReplaceWords(int wordLenght, string newValue);
     }
 }

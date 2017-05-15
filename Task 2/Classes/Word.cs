@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Task_2.Enums;
 using Task_2.Interfaces;
 
-namespace Task_2.Creator
+namespace Task_2.Classes
 {
     public class Word : IWord
     {
@@ -15,7 +15,7 @@ namespace Task_2.Creator
             {
                 return !string.IsNullOrEmpty(element.Value) && !(Regex.Matches(element.Value[0].ToString(), pattern).Count > 0);
             }
-             return false;
+            return false;
         }
         public int GetWordLength(ISentenceItem element)
         {

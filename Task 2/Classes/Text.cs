@@ -6,7 +6,7 @@ using Task_2.Classes;
 using Task_2.Enums;
 using Task_2.Interfaces;
 
-namespace Task_2.Creator
+namespace Task_2.Classes
 {
     public class Text
     {
@@ -44,10 +44,7 @@ namespace Task_2.Creator
         }
         public void RemoveWords(int wordLenght)
         {
-            foreach (var chosenSentence in _sentences)
-            {
-                chosenSentence.DeleteWords(wordLenght);
-            }
+            _sentences.ToList().ForEach(x => x.DeleteWordsOfGivenLength(wordLenght));
         }
         public void ReplaceWords(int indexSentense, int wordLenght, string newValue)
         {
@@ -57,7 +54,7 @@ namespace Task_2.Creator
         public IEnumerable<string> FindWordsOfPredeterminedLenght(int wordLenght)
         {
             IWord word = new Word();
-            ICollection<ISentenceItem> buffer =new List<ISentenceItem>();
+            ICollection<ISentenceItem> buffer = new List<ISentenceItem>();
             foreach (var currentSentence in GetQuestionSentences())
             {
                 for (int i = 0; i < currentSentence.GetWordsCount(); i++)

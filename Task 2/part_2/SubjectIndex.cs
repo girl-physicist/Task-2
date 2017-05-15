@@ -3,39 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using Task_2.Classes;
+using Task_2.Enums;
+using Task_2.Reader;
 
-namespace Task_2.Task_2_part_2
+namespace Task_2.part_2
 {
-   public class SubjectIndex:ISubjectIndex
+    public class SubjectIndex : ISubjectIndex
     {
-        private string _fileName;
-        public string FileName
+        public IDictionary<char, string[]> GetDictionary(IEnumerable<string> listSentencesToLower,int lineNumberOnPage)
         {
-            get => _fileName;
-            set => _fileName = value;
-        }
-        public SubjectIndex(string fName)
-        {
-            _fileName = fName;
-        }
-        private  string GetText()
-        {
-            return File.ReadAllText(_fileName, Encoding.Default);
-        }
-        public IDictionary<char, string[]> Some(int lineNumberOnPage)
-        {
-            string text = GetText();
-            var allCountedWords = text
-                .Replace("\"", "")
-                .Replace("\t", "")
-                .Replace("—", "")
-                .Replace(".", "")
-                .Replace(",", "")
-                .Replace("!", "")
-                .Replace("?", "")
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            var allCountedWords = listSentencesToLower
                 .Select((line, index) => line
-                    .ToLower()
                     .Split(' ')
                     .Where(item => !string.IsNullOrEmpty(item))
                     .Select(item => new { Word = item, LineNumber = index }))

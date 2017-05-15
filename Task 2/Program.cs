@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
-using System.Threading.Tasks;
 using Task_2.Classes;
-using Task_2.Creator;
-using Task_2.Opener_and_Reader;
+using Task_2.Reader;
+using Task_2.part_2;
 using Task_2.Parser;
-using Task_2.Task_2_part_2;
+
 
 
 namespace Task_2
@@ -21,14 +16,16 @@ namespace Task_2
             string line = "=============================================================";
             string line2 = String.Empty;
             string fileName = "input.txt";
-            IReader r = new Reader(fileName);
-            ISubjectIndex cl = new SubjectIndex(fileName);
+            IReader r = new Reader.Reader(fileName);
+            ISubjectIndex cl = new SubjectIndex();
             IParser<Text> parser = new TextParser();
-            IDictionary<char, string[]> word = cl.Some(2);
             IEnumerable<string> listSentences = new List<string>();
             IEnumerable<string> listSentences1 = new List<string>();
+            IEnumerable<string> listSentences2 = new List<string>();
             listSentences = r.Read(TypeOfRead.OriginalText);
             listSentences1 = r.Read(TypeOfRead.SpliText);
+            listSentences2 = r.Read(TypeOfRead.TextToLower);
+            IDictionary<char, string[]> word = cl.GetDictionary(listSentences2, 2);
             var text = parser.Parse(listSentences1);
             // 0 Вывод исходной версии
             Console.WriteLine("=====Original version=====");
@@ -49,7 +46,7 @@ namespace Task_2
             Console.WriteLine(line2);
             Console.WriteLine("Enter the length of the word");
             var length = Convert.ToInt32(Console.ReadLine());
-            var temp = text.FindWordsOfPredeterminedLenght( length);
+            var temp = text.FindWordsOfPredeterminedLenght(length);
             foreach (var i in temp)
             {
                 Console.WriteLine(i);

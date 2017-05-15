@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Task_2.Task_2_part_2
+namespace Task_2.part_2
 {
     interface ISubjectIndex
     {
-        IDictionary<char, string[]> Some(int lineNumberOnPage);
+        IDictionary<char, string[]> GetDictionary(IEnumerable<string> listSentences, int lineNumberOnPage);
     }
 }
